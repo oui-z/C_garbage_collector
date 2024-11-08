@@ -58,6 +58,30 @@ t_alloc_ptr	*addr_save(t_alloc_ptr *ptr, int code)
 }
 
 /**
+ * This function free an array of node
+ */
+void	gc_tab_free(char **addr)
+{
+	int			index;
+	t_alloc_ptr	*lst;
+
+	index = 0;
+	lst = addr_save(NULL, 1);
+	while (lst)
+	{
+		if (lst->addr == addr)
+			break ;
+		lst = lst->next;
+		index++;
+	}
+	if (!lst)
+		return ;
+	lst = remove_address(index, addr_save(NULL, 1));
+	addr_save(lst, 0);
+	gc_length(3);
+}
+
+/**
  * This function allocation memory using the size (in byte)
  * and track it for a better deletion
  */
