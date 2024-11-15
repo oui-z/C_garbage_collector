@@ -43,8 +43,11 @@ t_alloc_ptr	*remove_address(int index, t_alloc_ptr *lst)
 }
 
 /**
- * This function can create a linked list or add a
- * node to an existing linked list
+ * This function use a static to store the head of a
+ * linked list when first called in gc_malloc.
+ * It can be re-used to append a node to a linked list
+ * or just return the head of the linked list depending of
+ * the code given in parameter.
  */
 t_alloc_ptr	*addr_save(t_alloc_ptr *ptr, int code)
 {
